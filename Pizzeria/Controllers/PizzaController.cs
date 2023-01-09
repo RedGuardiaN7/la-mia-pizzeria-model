@@ -11,5 +11,20 @@ namespace Pizzeria.Controllers
             List<Pizza> PizzaList = PizzaData.GetPizzas();
             return View("Index", PizzaList);
         }
+
+        public IActionResult Details(int id) 
+        {
+            List<Pizza> PizzaList = PizzaData.GetPizzas();
+
+            foreach(Pizza pizza in PizzaList) 
+            {
+                if(pizza.Id == id)
+                {
+                    return View(pizza);
+                }
+            }
+
+            return NotFound("La pizza che stai cercando non esiste!");
+        }
     }
 }
